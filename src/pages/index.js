@@ -3,6 +3,30 @@ import Link from 'gatsby-link'
 import Card from '../components/Card';
 import Section from '../components/Section';
 import Wave from '../components/Wave';
+import staticdata from '../../staticdata.json';
+import Cell from '../components/Cell';
+import styled from 'styled-components';
+
+const SectionCaption = styled.p`
+  color: #80776e;
+  font-size:600;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+`
+
+const SectionCellGroup = styled.div`
+  max-width: 800px;
+  margin: 0 auto 100px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 40px;
+  padding: 0 32px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`
 
 const IndexPage = () => (
   <div>
@@ -48,6 +72,14 @@ const IndexPage = () => (
       title="Power your Learning Platform"
       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     />
+    <SectionCaption>6 sections - 3 hours</SectionCaption>
+    <SectionCellGroup>
+      {staticdata.cells.map(cell => (
+        <Cell
+          title={cell.title}
+          image={cell.image} />
+      ))}
+    </SectionCellGroup>
   </div>
 )
 
